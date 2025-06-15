@@ -1,0 +1,127 @@
+
+/*GetGit styles*/
+
+.get-git h3{
+  font-size: 1rem;
+  background-color: #30363d;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.getgit-navigation{
+  min-width: 700px;
+  max-width: 700px;
+  max-height: 700px;
+}
+
+.get-git {
+  padding: 1rem;
+  background-color: #1e1e1ecc;
+  border-radius: 5%;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  min-height: 500px;
+  max-width: 700px;
+  max-height: 660px;
+}
+
+.git-header {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow-x: auto;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+}
+.breadcrumb{
+  color: #bc7ce4;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  padding: none;
+  margin-bottom: 0px;
+}
+
+.breadcrumb.active{
+    color: #d63384;
+
+}
+
+.breadcrumb:hover{
+  color: #bc7ce4;
+  text-decoration: underline;
+}
+
+.breadcrumb-active{
+  color: #d63384;
+  font-weight: bold;
+}
+
+.git-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.git-table th {
+  text-align: left;
+  padding: 8px;
+  background-color: #222;
+  color: white;
+  border-bottom: 1px solid #333;
+}
+
+.git-table td {
+  padding: 8px;
+  background-color: #1e1e1e;
+  color: #ddd;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.git-table tr:hover td {
+  background-color: #2c313a;
+}
+
+.git-button {
+  background: #1e1e1e;
+  color: #c9d1d9;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+
+.git-button:hover {
+  background: #30363d;
+}
+
+.git-file-view {
+  max-height: 2000px;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0 auto 2rem auto;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  color: #eee;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.get-git pre{
+  white-space: pre-wrap;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin: 0;
+}

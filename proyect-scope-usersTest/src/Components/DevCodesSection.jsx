@@ -5,12 +5,14 @@ import { GetGit } from './GetGit'
 export const DevCodesSection = () => {
   return (
       <>
-        <div className="component-card">
+      <div className='component-card'>
           <h3 className='card-tittle'>Proceso de aprendizaje</h3>
-          <p className='card-text'>Como objetivo de la pagina, este lugar sera un repositorio que redirige
+          <div className='card-text'>Como objetivo de la pagina, este lugar sera un repositorio que redirige
             mis repositorios git aqui.
+      </div>
+        <div className="component-card getgit-navigation">
             <GetGit/>
-          </p>
+          </div>
         </div>
       </>
   )

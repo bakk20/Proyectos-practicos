@@ -1,27 +1,29 @@
 /* Sidebar.css */
 
 .sidebar {
-  width: 60px; /* ancho fijo para solo iconos */
-  height: 100vh; /* altura completa */
-  background-color: #2e2c3a;
+  position: fixed; /* Se mantiene fija en la pantalla */
+  top: 50%; /* Alinea su borde superior al centro de la pantalla */
+  left: 0; /* Se pega al borde izquierdo */
+  transform: translateY(-50%); /* La mueve hacia arriba la mitad de su propia altura, quedando centrada */
+  
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70px;
   padding: 1rem 0;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-  position: fixed;
-  left: 0;
-  top: 0;
+  background-color: rgba(70, 40, 70, 0.5);
+  border-radius: 5px;
+  transition: transform 0.3s ease;
   z-index: 1000;
-clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%);
 
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
 }
-
 .sidebar a {
   color: white;
   margin: 1rem 0;
   font-size: 1.5rem; /* tamaño del icono */
-  position: relative;
+  position: fixed;
+  top: 0;
   text-decoration: none;
   display: flex;
   justify-content: center;

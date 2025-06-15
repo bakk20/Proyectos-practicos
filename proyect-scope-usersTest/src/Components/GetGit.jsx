@@ -1,47 +1,158 @@
 import React, { useEffect, useState } from 'react';
+import { FaFolder, FaFileAlt, FaArrowLeft } from 'react-icons/fa';
+import ReactMarkdown from 'react-markdown';
+import "../styles/DevCodeSection.css"
 
 export const GetGit = () => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
+  const [currentPath, setCurrentPath] = useState('');
+  const [fileContent, setFileContent] = useState(null);
+  const [viewingFile, setViewingFile] = useState(false);
 
-  const repoOwner = 'kevinvilchez'; // cámbialo si usas otro usuario
-  const repoName = 'mi-repo';       // cámbialo por tu repositorio real
+  const repoOwner = 'bakk20';
+  const repoName = 'Proyectos-practicos';
+
+  const fetchContents = async (path = '') => {
+    try {
+      setError(null);
+      setFileContent(null);
+      setViewingFile(false);
+      const res = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`);
+      if (!res.ok) throw new Error(`Error ${res.status}`);
+      const data = await res.json();
+      setFiles(Array.isArray(data) ? data : []);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const fetchFileContent = async (path) => {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`);
+      if (!res.ok) throw new Error(`Error ${res.status}`);
+      const data = await res.json();
+      const content = atob(data.content);
+      setFileContent(content);
+      setViewingFile(true);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   useEffect(() => {
-    const fetchRepoContents = async () => {
-      try {
-        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/`);
-        if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-        const data = await response.json();
-        setFiles(data);
-      } catch (err) {
-        console.error('Error al obtener los archivos:', err);
-        setError(err.message);
-      }
-    };
+    fetchContents(currentPath);
+  }, [currentPath]);
 
-    fetchRepoContents();
-  }, []);
+  const handleFolderClick = (path) => setCurrentPath(path);
+  const handleFileClick = (path) => fetchFileContent(path);
+
+  const goBack = () => {
+    const parts = currentPath.split('/');
+    parts.pop();
+    setCurrentPath(parts.join('/'));
+  };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h2>Archivos del repositorio: <code>{repoOwner}/{repoName}</code></h2>
-      {error ? (
-        <p style={{ color: 'red' }}>Error: {error}</p>
-      ) : files.length === 0 ? (
-        <p>Cargando archivos...</p>
-      ) : (
-        <ul>
-          {files.map((item) => (
-            <li key={item.path}>
-              <a href={item.html_url} target="_blank" rel="noopener noreferrer">
-                {item.name} {item.type === 'dir' ? '(carpeta)' : ''}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+ <div className="get-git">
+    <div className="git-header">
+      <strong>Ruta:</strong>&nbsp;
+      <span
+        className="breadcrumb"
+        onClick={() => setCurrentPath('')}
+        style={{ cursor: 'pointer' }}
+      >
+        {repoOwner}
+      </span>
+      <span> / </span>
+      <span
+        className="breadcrumb"
+        onClick={() => setCurrentPath('')}
+        style={{ cursor: 'pointer' }}
+      >
+        {repoName}
+      </span>
 
+      {currentPath &&
+        currentPath.split('/').map((segment, index, arr) => {
+          const fullPath = arr.slice(0, index + 1).join('/');
+          const isLast = index === arr.length - 1;
+          return (
+            <span key={index}>
+              <span> / </span>
+              {isLast && viewingFile ? (
+                <span className="breadcrumb-active">{segment}</span>
+              ) : (
+                <span
+                  className="breadcrumb"
+                  onClick={() => setCurrentPath(fullPath)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {segment}
+                </span>
+              )}
+            </span>
+          );
+        })}
+    </div>
+
+    {viewingFile ? (
+      <button
+        className="git-button"
+        onClick={() => {
+          setViewingFile(false);
+          setFileContent(null);
+        }}
+      >
+        <FaArrowLeft /> Cerrar archivo
+      </button>
+    ) : (
+      currentPath && (
+        <button className="git-button" onClick={goBack}>
+          <FaArrowLeft /> Volver
+        </button>
+      )
+    )}
+
+    {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+
+    {viewingFile && fileContent !== null ? (
+      <div className="git-file-view">
+        <h3>📄 Viendo archivo: <code>{currentPath}</code></h3>
+        {currentPath.endsWith('.md') ? (
+          <ReactMarkdown>{fileContent}</ReactMarkdown>
+        ) : (
+          <pre>{fileContent}</pre>
+        )}
+      </div>
+    ) : (
+      <table className="git-table">
+        <thead>
+          <tr>
+            <th>📄 Ítem</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {files.map((item) => (
+            <tr
+              key={item.path}
+              onClick={() =>
+                item.type === 'dir'
+                  ? handleFolderClick(item.path)
+                  : handleFileClick(item.path)
+              }
+            >
+              <td>
+                {item.type === 'dir' ? <FaFolder /> : <FaFileAlt />} {item.name}
+              </td>
+              <td>{item.type}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
+);
+
+};

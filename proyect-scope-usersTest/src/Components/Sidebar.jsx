@@ -13,25 +13,20 @@ const Sidebar = ({ isLoggedIn, setIsLoggedIn }) => {
   }
 
   return (
-    <div className={`sidebar-order ${collapsed ? 'collapsed' : ''}`}>
-      {/* Sidebar contenedor */}
-      <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-        <nav>
-          <NavLink to="/mainscreen" data-tooltip="Home"><FaHome /></NavLink>
-          <NavLink to="/aboutscreen" data-tooltip="About"><FaExclamation /></NavLink>
-          <NavLink to="/devcodessection" data-tooltip="Dev Codes"><FaCode /></NavLink>
-          <NavLink to="/userprofile" data-tooltip="User Profile"><FaUser /></NavLink>
-          {isLoggedIn && (
-            <button onClick={handleLogout} className="logout-button" data-tooltip="Logout">
-              <FaDoorClosed />
-            </button>
-          )}
-        </nav>
-      </div>
-
-      {/* Botón fuera de la sidebar */}
-      <button className="toggle-btn" onClick={toggleSidebar}>☰</button>
-    </div>
+    <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+  <button className="toggle-btn" onClick={toggleSidebar}>☰</button>
+  <nav>
+    <NavLink to="/mainscreen" data-tooltip="Home"><FaHome /></NavLink>
+    <NavLink to="/aboutscreen" data-tooltip="About"><FaExclamation /></NavLink>
+    <NavLink to="/devcodessection" data-tooltip="Dev Codes"><FaCode /></NavLink>
+    <NavLink to="/userprofile" data-tooltip="User Profile"><FaUser /></NavLink>
+    {isLoggedIn && (
+      <button onClick={handleLogout} className="logout-button" data-tooltip="Logout">
+        <FaDoorClosed />
+      </button>
+    )}
+  </nav>
+</div>
   )
 }
 

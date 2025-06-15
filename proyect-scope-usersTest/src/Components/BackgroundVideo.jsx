@@ -4,7 +4,6 @@ import vaporwaveVideo from '../assets/LoginScreen-vaporwave.mp4';
 
 
 export const BackgroundVideo = () => {
-  console.log("🎬 BackgroundVideo cargado"); // ✅ Depuración
 
   return (
     <div className="background-video-container">

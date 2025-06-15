@@ -1,7 +1,12 @@
 .app-layout {
-  display: flex;
-  height: 100vh;
-  align-items: center;
+     display: flex;
+    height: 100vh;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
 }
 
 .sidebar-order {
@@ -11,7 +16,9 @@
 }
 
 .sidebar.collapsed {
-  transform: translateX(-100%);
+  transform: translate(-100%, -50%);
+  transition: 1s ease;
+
 }
 
 .sidebar-order.collapsed .toggle-btn {
@@ -19,9 +26,10 @@
 }
 
 .toggle-btn {
-  position: absolute;
-  top: 0;
-  left: 70px; /* el ancho de la sidebar */
+  position: fixed;
+  top: 15px;
+  left: 70px;
+  transform: translateY(-50%);
   width: 30px;
   height: 30px;
   background-color: #44444465;
@@ -30,20 +38,26 @@
   border-radius: 5px;
   cursor: pointer;
   z-index: 10;
-  transition: left 1s ease;
+  transition: left 1s ease, transform 1s ease;
 }
 
 .sidebar {
+  position: fixed; /* Se mantiene fija en la pantalla */
+  top: 50%; /* Alinea su borde superior al centro de la pantalla */
+  left: 0; /* Se pega al borde izquierdo */
+  transform: translateY( -50%); /* La mueve hacia arriba la mitad de su propia altura, quedando centrada */
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 70px;
   padding: 1rem 0;
   background-color: rgba(70, 40, 70, 0.5);
-  min-height: fit-content;
   border-radius: 5px;
-  transition: transform 0.3s ease;
-  transform: translateX(0); /* valor inicial */
+  transition: transform 1s ease;
+  z-index: 1000;
+
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
 }
 
 .sidebar a,
@@ -99,7 +113,7 @@
 
 .sidebar {
   background-color: #00000086; /* o rgba(0,0,0,0.7) si quieres transparencia */
-  transition: all 0.3s ease;
+  transition: all 1 ease;
 }
 
 .sidebar a:hover {
