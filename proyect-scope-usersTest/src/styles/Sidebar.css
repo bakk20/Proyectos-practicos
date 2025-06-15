@@ -1,0 +1,60 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 60px; /* ancho fijo para solo iconos */
+  height: 100vh; /* altura completa */
+  background-color: #2e2c3a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%);
+
+}
+
+.sidebar a {
+  color: white;
+  margin: 1rem 0;
+  font-size: 1.5rem; /* tamaño del icono */
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: #8c32c3; /* color con brillo */
+  text-shadow: 0 0 10px #8c32c3;
+}
+
+/* Tooltip que aparece al hacer hover */
+
+.sidebar a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #8c32c3;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  color: white;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.sidebar a:hover::after {
+  opacity: 1;
+  pointer-events: auto;
+}
