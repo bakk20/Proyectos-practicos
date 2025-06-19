@@ -7,10 +7,14 @@ const Sidebar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [collapsed, setCollapsed] = useState(false)
   const toggleSidebar = () => setCollapsed(!collapsed)
 
-  const handleLogout = () => {
-    setIsLoggedIn(false)
-    navigate('/', { replace: true }) // redirige a login al cerrar sesión
-  }
+const handleLogout = () => {
+if (confirm("¿Seguro que quieres cerrar sesión?")) {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user')
+  setIsLoggedIn(false);
+  setTimeout(() => navigate('/', { replace: true }), 0);
+}
+};
 
   return (
     <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>

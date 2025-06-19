@@ -1,6 +1,8 @@
 .app-layout {
      display: flex;
+     justify-content: center;
     height: 100vh;
+    width: 100%;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -32,8 +34,8 @@
   transform: translateY(-50%);
   width: 30px;
   height: 30px;
-  background-color: #44444465;
-  color: white;
+  background-color: #00000086;
+  color: #c86dff;
   border: none;
   border-radius: 5px;
   cursor: pointer;

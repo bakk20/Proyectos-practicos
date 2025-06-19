@@ -12,18 +12,18 @@
 .getgit-navigation{
   min-width: 700px;
   max-width: 700px;
-  max-height: 700px;
+  max-height: fit-content;
 }
 
 .get-git {
   padding: 1rem;
   background-color: #1e1e1ecc;
-  border-radius: 5%;
+  border-radius: 15px;
   color: #c9d1d9;
   font-family: 'Segoe UI', Roboto, sans-serif;
   min-height: 500px;
   max-width: 700px;
-  max-height: 660px;
+  max-height: fit-content;
 }
 
 .git-header {

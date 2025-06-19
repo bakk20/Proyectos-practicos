@@ -1,0 +1,11 @@
+.transition-wrapper {
+  overflow: hidden; /* evita scroll durante transición */
+  height: 100%;
+  min-height: 100vh;
+  will-change: filter, transform;
+  transform: translateZ(0); /* fuerza nueva capa GPU */
+
+
+
+
+}

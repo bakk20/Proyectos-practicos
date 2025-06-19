@@ -55,8 +55,14 @@ html, body {
   max-width: 1000px;
   height: fit-content;
   margin: 1rem auto;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.5s ease;
   overflow: auto;
+}
+
+/*GetGit styles */
+.getgit-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 

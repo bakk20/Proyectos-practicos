@@ -1,0 +1,131 @@
+.login-page-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.login-overlay{
+  position: absolute;
+  inset: 0;
+  width: 100vw;   /* Asegura ancho total de la ventana */
+  height: 100vh;  /* Asegura alto total de la ventana */
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo con transparencia */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* para compatibilidad */
+  z-index: 0; /* asegúrate que esté por encima del video */
+}
+
+.center-container{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: auto;
+    z-index: 2;
+}
+
+/*Efecto lindo pal container de login */
+
+/* Fondo video y blur encima */
+.login-screen {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.mb3-config{
+    margin-bottom: 5px;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(55, 51, 61, 0.5); /* semi-transparente */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 25px rgba(140, 50, 195, 0.4);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+/*inputs*/
+
+.login-container input {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.login-container input::placeholder {
+  color: #ccc;
+}
+
+/* Botón */
+.login-button {
+  background-color: #6b5b95;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #8367c7;
+  box-shadow: 0 0 15px 4px rgba(140, 50, 195, 0.6);
+}
+
+/* Error */
+.auth-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Enlace de cambio */
+.login-container p span {
+  color: #9f86ff;
+  cursor: pointer;
+}
+
+.login-container p span:hover {
+  text-decoration: underline;
+}
+
+
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
