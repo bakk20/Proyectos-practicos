@@ -1,0 +1,70 @@
+.carousel-container{
+  display: flex;
+  align-items: center;
+}
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: black;
+  color: black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 0;
+}
+
+/* Contenedor de todas las imágenes en línea */
+.carousel-slider {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* Cada slide ocupa exactamente 1000px de ancho */
+.carousel-slide {
+  min-width: 1000px;
+  height: 350px;
+  flex-shrink: 0;
+}
+
+/* Imagen individual */
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute; /* ✅ flotan sobre el carrusel sin salirse */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(73, 73, 73, 0.548);
+  color: white;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover{
+  background-color: green;
+  
+}
+
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}

@@ -1,0 +1,13 @@
+.footer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7E57C2;
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 120px;
+    color: white;
+    height: fit-content;
+    margin-left: calc(-50vw + 50%)
+
+}

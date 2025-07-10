@@ -1,0 +1,157 @@
+.product-list-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+
+.product-list-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 2rem;
+}
+
+.filtro-etiquetas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filtro-etiquetas label {
+  font-weight: bold;
+  color: #333;
+}
+
+
+.filtro-etiquetas select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.catalogo-productos {
+  width: 1000px;
+  height: auto;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f5f5f5; /* Fondo claro para el área del catálogo */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.catalogo-flex {
+  display: flex;
+  min-width: 1000px;
+  max-height: 1000px;
+  margin: 2rem auto;
+  gap: 2rem;
+  background-color: #f3f3f3;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.barra-busqueda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.barra-busqueda input {
+  padding: 0.5rem;
+  width: 300px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.etiquetas-disponibles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chip-etiqueta {
+  padding: 0.4rem 0.8rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.chip-etiqueta.activa {
+  background-color: #007bff;
+  color: white;
+}
+
+.lista-productos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.catalogo-filtros {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.catalogo-filtros input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.etiqueta-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.etiqueta-btn.activa {
+  background-color: #6a5acd;
+  color: white;
+  font-weight: bold;
+}
+
+.limpiar-filtro {
+  background-color: #ff6961;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 999px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+/* Columna derecha */
+.catalogo-productos-scroll {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 2000px;
+  overflow: auto;
+}
