@@ -8,17 +8,16 @@ import {
   updateUser,
   deleteUser
 } from '../controllers/users.controller.js';
-
 const router = Router();
 
 
 // Rutas activas, aqui se redirige al controlador
 router.get('/', verifyToken, checkRole('admin'), getAllUsers);
 router.get('/:id', verifyToken, validateID,  getUserById);
-router.post('/', validateUser, createUser);
+router.post('/', validateUser, registerUser);
 router.put('/:id', verifyToken, isOwnerOrAdmin, validateUser, updateUser); 
 router.delete('/:id', verifyToken, checkRole('admin'), validateID, deleteUser);
-
+router.get('/admin/users', verifyToken, checkRole('admin'), getAllUsers)
 export default router;
 
 /*

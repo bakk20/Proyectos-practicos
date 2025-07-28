@@ -11,6 +11,7 @@ export const registerUser = async (req, res) =>{
         return res.status(400).json({error:'El usuario ya ah sido creado!'})
     }
 
+    
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const user = new User({
