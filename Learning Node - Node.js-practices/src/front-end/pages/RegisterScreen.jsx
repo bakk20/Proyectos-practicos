@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../api/auth'
 
-export const registerScreen = () => {
+export const RegisterScreen = () => {
   const[name, setName] = useState('')
   const[password, setPassword] = useState('')
   const[email, setEmail] = useState('')
   const[role, setRole] = useState(null)
 
+  const navigate = useNavigate
 
   const handleRegister = async () =>{
-
 
     try{
       if(password.length < 5){
         return alert('La contraseña debe ser de mas de 5 caracteres')
       }
-      const newUser = await axios.post('/api/auth/register',{
+      const newUser = await registerUser({
         name,
         email,
         password,
         role
       })
-      if(response.status === 201){
-      alert('Usuario creado de forma exitosa!')
-    }
+      navigate('/login')
+      console.log('Regresando al Login...')
     }catch(error){
       console.log('Error al crear al usuario', error)
       alert(error.respondes.data?.error || 'Error en el registro')
@@ -41,11 +41,10 @@ export const registerScreen = () => {
         <input required type='email' placeholder='Su correo Aqui' value={email} onChange={e => setEmail(e.target.value)}></input>
         <p>Contraseña</p>
         <input minLength={5} required type='password' placeholder='Su contraseña' value={password} onChange={e => setPassword(e.target.value)}></input>
+        <p>Elije un Rol</p>
         <select required value={role || ''} onChange={e => setRole(e.target.value)}>
-          Elija un rol
           <option value='user'>Usuario</option>
           <option value='admin'>Administrador</option>
-          <option></option>
         </select>
         <button type='submit'>Aceptar</button>
       </form>

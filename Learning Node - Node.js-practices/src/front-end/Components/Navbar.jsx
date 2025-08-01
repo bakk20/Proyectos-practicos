@@ -10,6 +10,8 @@ export const Navbar = () => {
         <NavLink to='/login'>
         <button>Ingresar</button>
         </NavLink>
+        <NavLink to='/register'>
+        <button>Registrate</button></NavLink>
     </div>
   )
 }

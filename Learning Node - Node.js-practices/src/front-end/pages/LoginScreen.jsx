@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../back-endEx2/api/auth.js'
+import { loginUser } from '../api/auth.js'
 import { useAuth } from '../context/AuthProvider.jsx'
 import  {jwtDecode}  from 'jwt-decode'
 
@@ -15,12 +15,12 @@ export const LoginScreen = () => {
   const handleLogin = async (e) =>{
     e.preventDefault()
     try{
-      const token = await loginUser(email, password)
+      const {token} = await loginUser(email, password)
 
       const decoded = jwtDecode(token)
       const role = decoded?.role
-
-      login(token)
+      const id = decoded?.id
+      login(token, id)
 
       if(role === 'admin'){
         navigate('/admin')
