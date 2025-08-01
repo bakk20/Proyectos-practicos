@@ -1,15 +1,16 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import User from '../models/user'
+import User from '../models/user.js'
 
-const JWT_SECRET = 'tu_clave_secreta'
-
+//Controla el Inicio de Sesión
 export const userLogin = async (req, res) =>{
     try{
+        console.log('Llego a login!')
+        console.log('JWT_SECRET:', process.env.JWT_SECRET)
         const {email, password} = req.body
 
         const user = await User.findOne({email})
-        if(!email){
+        if(!user){
             return res.status(400).json({error:'El correo es invalido o no existe'})
         }
 
@@ -18,11 +19,10 @@ export const userLogin = async (req, res) =>{
             return res.status(400).json({error:'Contraseña invalida'})
         }
 
-        const token = jwt.sign({userID: user._id, role: user.role}, JWT_SECRET,{
-            expiresIn: '1h'
-        })
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.json(token)
+
+        res.json({message:'Inicio de sesión exitoso', token})
     }catch(error){
         res.status(500).json({error:'No se pudo ingresar al servidor'})
     }

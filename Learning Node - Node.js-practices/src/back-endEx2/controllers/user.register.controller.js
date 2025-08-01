@@ -1,8 +1,11 @@
 import bcrypt from "bcryptjs";
-import User from "../models/user";
+import User from "../models/user.js";
 
+//Controllador del Registro de usuarios
 export const registerUser = async (req, res) =>{
     try{
+    console.log('Llego a /register!')
+
     const {name, age, email, password, role} = req.body
 
     const userExists = await User.findOne({email})
@@ -23,8 +26,15 @@ export const registerUser = async (req, res) =>{
     })
 
     await user.save()
-    res.status(201).json({message:'El usuario ah sido creado exitosamente'})
+     res.status(201).json({message:'El usuario ah sido creado exitosamente',
+        user:{
+            name: user.name,
+            email: user.email,
+            role: user.role
+        }
+    })
     }catch(error){
-        res.status(500).json({error:'Error de sistema: No se pudo crear el correo'})
+        console.log('Error en el Register!')
+        res.status(500).json({error:'Error interno del servidor'})
     }
 }

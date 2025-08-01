@@ -2,7 +2,7 @@ import { body,validationResult } from "express-validator";
 
 export const validateUser = () => [
   body('email').isEmail().withMessage('El email no es válido'),
-  body('name').notEmpty().withMessage('El nombre es obligatorio'),
+  body('password').notEmpty().withMessage('La contraseña es obligatorio'),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {  

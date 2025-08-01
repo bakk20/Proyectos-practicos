@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken'
-const JWT_SECRET = 'tu_clave_secreta'
+
 
 export const verifyToken = (req,res,next) =>{
+     console.log('HEADERS:', req.headers)
     const authHeader = req.headers.authorization
     if(!authHeader || !authHeader.startsWith('Bearer ')){
         return res.status(400).json({error:'Token no proporcionado'})
