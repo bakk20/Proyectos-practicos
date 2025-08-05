@@ -1,24 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { getUserData } from '../hooks/getUserData'
 import { getUserById } from '../api/adminAuth'
 
 export const MainScreen = () => {
-  const [userData, setUserData] = useState(null)
-
-  useEffect(() => {
-    const userId = localStorage.getItem('token')
-    if(!userId) return
-    const fetchUser = async () =>{
-    try{
-      const user = await getUserById(userId)
-
-      setUserData(user)
-    }catch(error){
-      console.error('No se pudo conseguir la informacion del usuario')
-    }
-  }
-   fetchUser()
-  }, [])
+  
+  const {userData, handleLogout} = getUserData()
 
   if(!userData) return <div><p>Cargando...</p></div>
   

@@ -4,6 +4,7 @@ import { registerUser } from '../api/auth'
 
 export const RegisterScreen = () => {
   const[name, setName] = useState('')
+  const[age, setAge] = useState(0)
   const[password, setPassword] = useState('')
   const[email, setEmail] = useState('')
   const[role, setRole] = useState(null)
@@ -13,11 +14,12 @@ export const RegisterScreen = () => {
   const handleRegister = async () =>{
 
     try{
-      if(password.length < 5){
-        return alert('La contraseña debe ser de mas de 5 caracteres')
+      if(password.length < 6){
+        return alert('La contraseña debe ser de mas de 6 caracteres')
       }
       const newUser = await registerUser({
         name,
+        age,
         email,
         password,
         role
@@ -36,11 +38,24 @@ export const RegisterScreen = () => {
       <h1>Registro</h1>
       <form onSubmit={handleRegister}>
         <p>Nombre de usuario</p>
-        <input placeholder='Su nombre Aqui' value={name} onChange={ e => setName(e.target.value)}></input>
+        <input placeholder='Su nombre Aqui' 
+        value={name} 
+        onChange={ e => setName(e.target.value)}></input>
+
         <p>Correo Electronico</p>
-        <input required type='email' placeholder='Su correo Aqui' value={email} onChange={e => setEmail(e.target.value)}></input>
+        <input required type='email' 
+        placeholder='Su correo Aqui' 
+        value={email} onChange={e => setEmail(e.target.value)}></input>
+
         <p>Contraseña</p>
-        <input minLength={5} required type='password' placeholder='Su contraseña' value={password} onChange={e => setPassword(e.target.value)}></input>
+        <input minLength={6} required type='password' 
+        placeholder='Su contraseña' value={password} 
+        onChange={e => setPassword(e.target.value)}></input>
+
+        <p>{`(Opcional) Edad`}</p>
+        <input type='number'placeholder='Su edad Aqui' 
+        value={age} onChange={e => setAge(e.target.value)}></input>
+        
         <p>Elije un Rol</p>
         <select required value={role || ''} onChange={e => setRole(e.target.value)}>
           <option value='user'>Usuario</option>

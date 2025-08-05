@@ -6,9 +6,9 @@ export const Layout = () => {
     <>
     <div>
     <>
-      <Navbar /> {/* No pongas nada dentro */}
+      <Navbar /> 
       <main>
-        <Outlet /> {/* Aquí se renderiza el contenido de la ruta */}
+        <Outlet />
       </main>
     </>
     </div>

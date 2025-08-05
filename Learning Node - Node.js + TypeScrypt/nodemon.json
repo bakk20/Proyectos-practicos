@@ -1,0 +1,6 @@
+{
+  "watch": ["src/back-end"],
+  "ext": "ts",
+  "ignore": ["node_modules"],
+  "exec": "node --loader ts-node/esm ./src/back-end/index.ts"
+}

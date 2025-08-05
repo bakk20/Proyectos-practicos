@@ -1,17 +1,19 @@
 import React from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from '../context/AuthProvider'
 
 export const Navbar = () => {
+  const {logout} = useAuth()
   return (
     <div>
         <NavLink to='/'>
-        <button>Inicio</button>
+        <button onClick={logout}>Inicio</button>
         </NavLink>
         <NavLink to='/login'>
-        <button>Ingresar</button>
+        <button onClick={logout}>Ingresar</button>
         </NavLink>
         <NavLink to='/register'>
-        <button>Registrate</button></NavLink>
+        <button onClick={logout}>Registrate</button></NavLink>
     </div>
   )
 }

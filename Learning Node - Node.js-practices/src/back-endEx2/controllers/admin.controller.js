@@ -34,6 +34,9 @@ export const createUser = async (req,res) =>{
         if(find){
             return res.status(400).json({message:'El correo ya esta en uso y el usuario ya existe!'})
         }
+        if(password.length < 6){
+            return res.status(400).json({message:'La contraseña no tiene el minimo de caracteres (min. 6)'})
+        }
 
         const hashpassword = await bcrypt.hash(password, 10)
 

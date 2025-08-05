@@ -15,8 +15,9 @@ export const LoginScreen = () => {
   const handleLogin = async (e) =>{
     e.preventDefault()
     try{
+      
       const {token} = await loginUser(email, password)
-
+      console.log(token)
       const decoded = jwtDecode(token)
       const role = decoded?.role
       const id = decoded?.id
@@ -26,7 +27,7 @@ export const LoginScreen = () => {
         navigate('/admin')
       }
       else{
-          navigate('/')
+          navigate('/index')
       }
 
     }catch(error){

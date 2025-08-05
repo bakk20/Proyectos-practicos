@@ -6,7 +6,6 @@ import User from '../models/user.js'
 export const userLogin = async (req, res) =>{
     try{
         console.log('Llego a login!')
-        console.log('JWT_SECRET:', process.env.JWT_SECRET)
         const {email, password} = req.body
 
         const user = await User.findOne({email})
