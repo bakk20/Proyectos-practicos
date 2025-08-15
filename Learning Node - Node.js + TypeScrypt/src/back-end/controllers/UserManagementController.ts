@@ -1,11 +1,11 @@
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
-import { User } from '../models/User'
-import  jwt  from 'jsonwebtoken'
-import {Response, Request, NextFunction} from 'express'
+import { User } from '../models/User.ts'
+import {Response, Request} from 'express'
 
 const JWT_SECRET = process.env.JWT_SECRET
 const loginError = 'Error en el proceso - Login:'
-const registerError = 'Error en el proceso - Register'
+const registerError = 'Error en el proceso - Register:'
 
 interface loginForm {
     email: string,
@@ -24,6 +24,7 @@ export const UserLogin = async (req: Request<{},{},loginForm>, res: Response) =>
     const {email, password} = req.body
     try{
         const user = await User.findOne({email})
+
         if(!user){
             return res.status(404).json({
                 message: `${loginError} Usuario no encontrado!`
@@ -51,16 +52,19 @@ export const UserLogin = async (req: Request<{},{},loginForm>, res: Response) =>
 
         res.json({
             message:'Inicio de Sesión exitoso!',
-            'Nombre': user.name,
-            'Correo': user.email,
-            'Rol' : user.role
+            name: user.name,
+            email: user.email,
+            role : user.role,
+            token
         })
     }catch(error){
         if( error instanceof Error){
             res.status(500).json({
-                message: `${loginError}, El sistema no pudo ejecutar el inicio de sesión`,
+                message: `${loginError} El sistema no pudo ejecutar el inicio de sesión`,
                 error: error.message
             })
+        }else{
+            console.log(`${loginError} Error no identificado`, error)
         }
     }
 }
@@ -70,10 +74,9 @@ export const UserRegister = async (req: Request<{},{}, registerForm>, res:Respon
         const {name, email, password, role} = req.body
 
         const formData = await User.findOne({email})
+
         if(formData){
-            return res.status(400).json({
-                message:`${registerError} Error en el proceso - UserRegister: Ya hay un usuario creado con ese correo`
-            })
+            return res.status(400).json({ message:`Ya hay un usuario creado con ese correo`})
         }
 
         const hashpassword = await bcrypt.hash(password, 10)
@@ -86,6 +89,7 @@ export const UserRegister = async (req: Request<{},{}, registerForm>, res:Respon
         })
 
         await register.save()
+        
         res.json({
             message:'Usuario Creado exitosamente!',
             'Nombre' : name,
@@ -96,9 +100,11 @@ export const UserRegister = async (req: Request<{},{}, registerForm>, res:Respon
     }catch(error){
         if(error instanceof Error){
             res.status(500).json({
-                message: `${registerError} Error en el proceso - UserRegister: El sistema no pudo crear el usuario`,
+                message: `${registerError} El sistema no pudo crear el usuario`,
                 error: error.message
             })
+        }else{
+            console.log(`${registerError} Error no identificado`, error)
         }
     }
 }

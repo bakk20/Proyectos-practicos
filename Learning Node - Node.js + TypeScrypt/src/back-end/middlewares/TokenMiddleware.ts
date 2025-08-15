@@ -1,4 +1,5 @@
-import  jwt  from "jsonwebtoken";
+import { createRequire } from 'node:module'
+import jwt from 'jsonwebtoken';
 import {Request, Response, NextFunction} from 'express'
 
 interface CustomUser{
@@ -27,6 +28,7 @@ export const validateUser = (req: AuthenticateRequest, res: Response, next: Next
             id: decoded.id,
             role: decoded.role
         }
+        console.log('Payload decodificado:', decoded)
         next()
     }catch(error){
         if(error instanceof Error){

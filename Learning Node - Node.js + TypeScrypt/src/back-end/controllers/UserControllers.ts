@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { User } from "../models/User";
+import { User } from "../models/User.ts";
 import bcrypt from 'bcrypt'
-import { CustomUser } from "../interfaces/CustomRequest";
 
 interface UserData {
     'name': string,
@@ -32,6 +31,7 @@ export const getAllUsers = async (req :Request , res: Response) => {
 
 export const getUserDataById = async (req: Request, res: Response) =>{
     try{
+        console.log('En GetUserDataById...')
     const {id} = req.params as {id:string}
     const user = await User.findById(id).select('-password')
     if(!user){
@@ -50,9 +50,10 @@ export const getUserDataById = async (req: Request, res: Response) =>{
         }    }
 }
 
-export const updateUserData = async (req: Request<{}, {}, Partial<UserData>>, res: Response) =>{
+export const updateUserData = async (req: Request<{id:string}, {}, Partial<UserData>>, res: Response) =>{
     try{
-    const {id} = req.params as {id: string}
+        console.log('Llego al backend...')
+    const {id} = req.params
     const update = req.body
     const user = await User.findById(id)
     if(!user){
@@ -60,10 +61,10 @@ export const updateUserData = async (req: Request<{}, {}, Partial<UserData>>, re
             message:'Error en el proceso - updateUserData: No se encontro al usuario'})
     }
 
-    Object.assign(update)
+    Object.assign(user, update)
     
     await user.save()
-    res.status(200).json({message:`Usuario actualizado!`})
+    res.status(200).json(user)
     
     }catch(error){
         if( error instanceof Error){
@@ -79,7 +80,8 @@ export const updateUserData = async (req: Request<{}, {}, Partial<UserData>>, re
 
 export const createUser = async (req: Request< {} ,{}, UserData>, res:Response) =>{
     const {name, email, password, role} = req.body
-    try{
+    console.log('Llego a createUser en Backend...')
+    try{        
         const user = await User.findOne({email})
         if(user){
             return res.status(400).json({
@@ -124,7 +126,7 @@ export const deleteUser = async (req: Request<{}, {}, {}>, res: Response ) =>{
                 message:'Error en el proceso - deleteUser: Usuario no encontrado'
             })
         }
-        res.json(user)
+        res.json({message:'Usuario eliminado', user})
     }catch(error){
         if(error instanceof Error){
             res.status(500).json({

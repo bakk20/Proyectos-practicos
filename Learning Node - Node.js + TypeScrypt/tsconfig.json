@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "rootDir": "./src",
     "outDir": "./dist",
@@ -10,7 +11,11 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
   },
   "include": ["src"],
   "exclude": ["node_modules"]

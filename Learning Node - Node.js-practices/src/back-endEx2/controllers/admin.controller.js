@@ -77,7 +77,7 @@ export const updateUser = async (req,res) =>{
     if(role) findUser.role = role
 
     if(password){
-        const hashedpassowrd = await bcrypt.hash(password, 10)
+        const hashedpassword = await bcrypt.hash(password, 10)
         findUser.password = password
     }
 

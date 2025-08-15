@@ -9,13 +9,21 @@ interface IUser extends Document {
 }
 
 const userSchema = new Schema<IUser>({
-    id: {type: 'string' },
-    name: {type: 'string', required: true},
-    email: {type: 'string', required: true},
-    password: {type:'string', required: true},
-    role: {type: 'string', required: true}
+    name: {type: 'String', required: true},
+    email: {type: 'String', required: true},
+    password: {type:'String', required: true},
+    role: {type: 'String', required: true}
 
 })
 
+userSchema.set('toJSON',{
+    virtuals: true,
+    versionKey: false,
+    transform: (_doc: IUser, ret: any) => {
+        ret.id = ret._id;  
+        delete ret._id;     
+    }
+})
+
 export type UserType = InferSchemaType<typeof userSchema>
-export const User = model('User', userSchema)
+export const User = model<UserType>('User', userSchema)
