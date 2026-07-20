@@ -37,7 +37,7 @@
 .demo-chat {
   flex: 1.4;
   min-width: 280px;
-  height: 420px;
+  height: 480px;
 }
 
 .demo-chat-body {
@@ -85,8 +85,12 @@
   gap: 1rem;
 }
 
-.demo-cart, .demo-group {
-  flex: 1;
+.demo-cart {
+  flex: 0.8;
+}
+
+.demo-group {
+  flex: 1.5;
 }
 
 .demo-panel-body {
@@ -120,21 +124,22 @@
 .group-msg {
   background: rgba(140, 50, 195, 0.15);
   border-left: 3px solid #8c32c3;
-  padding: 0.6rem 0.7rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 0.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
   animation: bubble-in 0.25s ease;
 }
 
 .group-msg-order {
   font-weight: bold;
   color: #fff;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .group-msg-line {
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
 .group-msg-total {
@@ -147,6 +152,7 @@
   background: rgba(255, 255, 255, 0.06);
   border-left: 3px solid #4caf6d;
   font-weight: bold;
+  font-size: 0.82rem;
   color: #dfffe8;
   padding: 0.4rem 0.7rem;
 }
@@ -171,6 +177,11 @@
     flex-direction: column;
   }
   .demo-chat {
-    height: 320px;
+    height: 340px;
+  }
+  .demo-cart,
+  .demo-group {
+    flex: none;
+    min-height: 160px;
   }
 }

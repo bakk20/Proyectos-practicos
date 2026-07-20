@@ -20,7 +20,7 @@ const SCRIPT = [
     address: 'Jr. Los Cerezos 123, Comas (referencial)',
     total: 12.0,
   },
-  { type: 'group', kind: 'reply', text: 'pedido #1042 listo' },
+  { type: 'group', kind: 'reply', text: 'orden #1042 lista' },
   { type: 'chat', from: 'bot', text: '¡Comprobante verificado! ✅ Tu pedido está confirmado, en camino 🚴' },
 ]
 
