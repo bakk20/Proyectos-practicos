@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import adminRoutes from './routes/adminRoutes.js';
 import catalogRoutes from './routes/catalogRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use('/api/admin', adminRoutes);
 app.use('/api/catalog', catalogRoutes);
+app.use('/api/orders', orderRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

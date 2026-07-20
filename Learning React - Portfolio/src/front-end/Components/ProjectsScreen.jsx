@@ -34,8 +34,10 @@ function ProjectDetail({ id }) {
         <div>
           <h3 className="card-title">Catálogo de Farmacia</h3>
           <p className="card-text">
-            SPA con React + TailwindCSS, backend en Node.js + MongoDB, autenticación JWT,
-            SSR/SSG en Next.js, manejo de estado con Redux Toolkit.
+            SPA con React + Vite, backend en Node.js + Express + MongoDB (Mongoose),
+            autenticación JWT, manejo de estado con Redux Toolkit, subida de imágenes con
+            Multer, y un sistema de plantillas para armar secciones del catálogo sin tocar
+            código.
           </p>
         </div>
       )
@@ -44,8 +46,9 @@ function ProjectDetail({ id }) {
         <div>
           <h3 className="card-title">Plataforma de Usuarios</h3>
           <p className="card-text">
-            Login/registro con JWT, permisos de usuario, pruebas unitarias con Vitest. De
-            hecho, este mismo portafolio nació como ese proyecto — lo estás viendo ahora.
+            Login/registro con JWT, contexto de autenticación, rutas protegidas y panel de
+            administración. De hecho, este mismo portafolio nació como una variante de ese
+            proyecto — lo estás viendo ahora.
           </p>
         </div>
       )
@@ -54,8 +57,8 @@ function ProjectDetail({ id }) {
         <div>
           <h3 className="card-title">Dashboard de Tareas</h3>
           <p className="card-text">
-            Drag & drop con dnd-kit/core, arquitectura modular con Vite, CI/CD básico con
-            GitHub Actions.
+            Tablero con drag & drop (dnd-kit + react-grid-layout), Next.js con backend en
+            TypeScript, estilos con Tailwind CSS y manejo de estado con Redux Toolkit.
           </p>
         </div>
       )

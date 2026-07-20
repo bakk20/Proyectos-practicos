@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import '../styles/ProductItem.css';
 import '../styles/ProductList.css';
 import { etiquetasDisponibles } from '../Data/EtiquetasProductos';
+import { useCart } from '../context/CartContext';
 
 
 export const ProductList = ({ secciones = [], onEditProducto, isAdmin }) => {
   const [filtroEtiqueta, setFiltroEtiqueta] = useState('');
   const [busqueda, setBusqueda] = useState('');
+  const { addToCart } = useCart();
 
   const productos = secciones
     .filter(seccion => seccion.tipoSeccion === 'producto')
@@ -67,7 +69,20 @@ export const ProductList = ({ secciones = [], onEditProducto, isAdmin }) => {
               <h3>{producto.descripcion}</h3>
               <p>Etiqueta: {producto.etiqueta}</p>
               <p>Pertenece a: {producto.nombre}</p>
-              <p>Producto #{index + 1}</p>
+              <p className="product-item-precio">S/ {Number(producto.precio || 0).toFixed(2)}</p>
+              <button
+                className="product-add-button"
+                onClick={() =>
+                  addToCart({
+                    id: producto.id,
+                    descripcion: producto.descripcion,
+                    precio: Number(producto.precio || 0),
+                    imagen: producto.imagen,
+                  })
+                }
+              >
+                Agregar al carrito
+              </button>
               {isAdmin && onEditProducto && (
                 <button className="product-edit-button" onClick={() => onEditProducto(producto.nombre)}>
                   Editar

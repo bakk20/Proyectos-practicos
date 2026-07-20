@@ -5,3 +5,6 @@
     export {AddContent} from '../componentes/AddContent.jsx'
     export {Layout} from '../componentes/Layout.jsx'
     export {LoginScreen} from '../componentes/LoginScreen'
+    export {CartScreen} from '../componentes/CartScreen.jsx'
+    export {CheckoutScreen} from '../componentes/CheckoutScreen.jsx'
+    export {OrderConfirmationScreen} from '../componentes/OrderConfirmationScreen.jsx'

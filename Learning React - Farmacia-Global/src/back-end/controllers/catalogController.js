@@ -48,6 +48,7 @@ export const crearSeccion = async (req, res) => {
       return {
         descripcion: bloque.descripcion,
         etiqueta: bloque.etiqueta,
+        precio: Number(bloque.precio) || 0,
         imagen: file ? file.filename : bloque.imagen || ''
       };
     });
@@ -75,6 +76,7 @@ export const editarSeccion = async (req, res) => {
     const bloquesConImagenes = bloques.map((bloque, i) => ({
       descripcion: bloque.descripcion,
       etiqueta: bloque.etiqueta,
+      precio: Number(bloque.precio) || 0,
       imagen: req.files?.[i]?.filename || bloque.imagen || '' // previene undefined
     }));
 

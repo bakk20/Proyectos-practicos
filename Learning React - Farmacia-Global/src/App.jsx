@@ -8,7 +8,10 @@ import{
   MainScreen,
   AddContent,
   LoginScreen,
-  Layout
+  Layout,
+  CartScreen,
+  CheckoutScreen,
+  OrderConfirmationScreen
 } from './front-end/rutas/routes'
 import './App.css'
 
@@ -25,6 +28,9 @@ export const App = () => {
         <Route path='/' element={<MainScreen />} />
         <Route path='aboutus' element={<AboutScreen />} />
         <Route path='catalog' element={<CatalogScreen />} />
+        <Route path='cart' element={<CartScreen />} />
+        <Route path='checkout' element={<CheckoutScreen />} />
+        <Route path='pedido-confirmado/:id' element={<OrderConfirmationScreen />} />
         {/*No se encontraron rutas*/}
         <Route path='*' element={<Navigate to='/MainScreen' replace />} />
       </Route>

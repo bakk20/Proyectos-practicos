@@ -68,3 +68,24 @@ a{
     height: 60px;
     width: 140px;
 }
+
+.Nav-button-cart{
+    position: relative;
+}
+
+.cart-badge{
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #d62828;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}

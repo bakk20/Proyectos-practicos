@@ -9,19 +9,19 @@ export const TemplateOverlay = ({ onClose, onSubmit, initialData, onDelete }) =>
   const [nombre, setNombre] = useState(initialData?.nombre || '');
   const [etiquetaGeneral, setEtiquetaGeneral] = useState(initialData?.etiquetaGeneral || '');
   const [bloques, setBloques] = useState(
-    initialData?.bloques || [{ imagen: '', descripcion: '', etiqueta: '' }]
+    initialData?.bloques || [{ imagen: '', descripcion: '', etiqueta: '', precio: '' }]
   );
 
   // ✅ Solo limpiar bloques si no estamos editando (para evitar reseteo)
   useEffect(() => {
     if (tipoSeccion === 'producto' && !initialData) {
-      setBloques([{ imagen: '', descripcion: '', etiqueta: '' }]);
+      setBloques([{ imagen: '', descripcion: '', etiqueta: '', precio: '' }]);
     }
   }, [tipoSeccion]);
 
   const handleAddBloque = () => {
     if (bloques.length >= 6) return;
-    setBloques([...bloques, { imagen: '', descripcion: '', etiqueta: '' }]);
+    setBloques([...bloques, { imagen: '', descripcion: '', etiqueta: '', precio: '' }]);
   };
 
   const handleChangeBloque = (index, field, value) => {
@@ -65,12 +65,14 @@ export const TemplateOverlay = ({ onClose, onSubmit, initialData, onDelete }) =>
       return {
         descripcion: bloque.descripcion,
         etiqueta: bloque.etiqueta,
+        precio: bloque.precio,
         imagen: ''
       };
     } else {
       return {
         descripcion: bloque.descripcion,
         etiqueta: bloque.etiqueta,
+        precio: bloque.precio,
         imagen: bloque.imagen
       };
     }
@@ -153,6 +155,15 @@ const handleDeleteClick = () => {
                   <option key={i} value={etiqueta}>{etiqueta}</option>
                 ))}
               </select>
+
+              <label>Precio (S/):</label>
+              <input
+                type="number"
+                min="0"
+                step="0.10"
+                value={bloque.precio}
+                onChange={(e) => handleChangeBloque(index, 'precio', e.target.value)}
+              />
 
               {tipoSeccion === 'bundle' && (
                 <div className="bloque-buttons">

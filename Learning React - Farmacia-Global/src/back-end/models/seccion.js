@@ -4,6 +4,7 @@ const bloqueSchema = new mongoose.Schema({
   imagen: String, // URL o base64 (según cómo la manejes)
   descripcion: String,
   etiqueta: String,
+  precio: { type: Number, default: 0 },
 });
 
 const seccionSchema = new mongoose.Schema({
