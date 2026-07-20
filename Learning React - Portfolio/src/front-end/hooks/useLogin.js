@@ -13,7 +13,7 @@ export const useLogin = ({ setIsLoggedIn }) => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setIsLoggedIn(true);
-      navigate('/mainscreen', { replace: true });
+      navigate('/', { replace: true });
 
       return { success: true };
     } else {

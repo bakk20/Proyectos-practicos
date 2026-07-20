@@ -10,10 +10,10 @@ export const DevCodesSection = () => {
       <div className='getgit-wrapper'>
 
       <div className='component-card'>
-        <h3 className='card-tittle'>Proceso de aprendizaje</h3>
+        <h3 className='card-title'>Proyectos</h3>
         <div className='card-text'>
-          Como objetivo de la pagina, este lugar sera un repositorio que redirige
-          mis repositorios git aqui.
+          Navegá directo mi repositorio de proyectos prácticos en GitHub: carpetas y
+          archivos reales, sin intermediarios.
         </div>
         <div className="component-card getgit-navigation">
           <GetGit />

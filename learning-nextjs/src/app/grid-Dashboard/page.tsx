@@ -110,7 +110,7 @@ export default function KanBanBoard(){
 
       // distinto contenedor → mover en vivo
       if (from !== to) {
-        dispatch(moveCard({ cardId: activeId, from, to }));
+        dispatch(moveCard({ id: activeId, from, to }));
         return;
       }
 
@@ -119,7 +119,7 @@ export default function KanBanBoard(){
       const oldIndex = list.indexOf(activeId);
       const newIndex = list.indexOf(overId);
       if (oldIndex !== newIndex) {
-        dispatch(moveCard({ cardId: activeId, from, to, targetIndex: newIndex }));
+        dispatch(moveCard({ id: activeId, from, to, targetIndex: newIndex }));
       }
     };
 
@@ -140,11 +140,11 @@ export default function KanBanBoard(){
           const oldIndex = list.indexOf(activeId);
           const newIndex = list.indexOf(overId);
           if(oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex){
-            dispatch(moveCard({cardId: activeId, from, to, targetIndex: newIndex}));
+            dispatch(moveCard({id: activeId, from, to, targetIndex: newIndex}));
           }
           return;
         }
-        dispatch(moveCard({cardId: activeId, from, to}));
+        dispatch(moveCard({id: activeId, from, to}));
     }
 
     const addCardToColumn = (columnId: string) =>{

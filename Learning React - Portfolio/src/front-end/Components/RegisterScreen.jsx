@@ -60,7 +60,7 @@ export const RegisterScreen = () => {
       }
 
       // Registro exitoso
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       console.error(err);
       setError('Error al conectar con el servidor');
@@ -128,7 +128,7 @@ export const RegisterScreen = () => {
         <button className='login-button' type="submit" disabled={loading}>
           {loading ? 'Registrando...' : 'Registrarse'}
         </button>
-                <p>¿Ya tienes una cuenta? <span onClick={() => navigate('/')}>Inicia sesión</span></p>
+                <p>¿Ya tienes una cuenta? <span onClick={() => navigate('/login')}>Inicia sesión</span></p>
 
       </form>
       

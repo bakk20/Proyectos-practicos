@@ -27,6 +27,23 @@ html, body {
     line-height: 1.6;
 }
 
+ul.card-text {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+ul.card-text li {
+  margin-bottom: 0.6rem;
+}
+
+.card-text a {
+  color: #c86dff;
+}
+
+.card-text a:hover {
+  color: #ffd700;
+}
+
 
 
 /*Componentes de diseño: Morado y negro opaco */
