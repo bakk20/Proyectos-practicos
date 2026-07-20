@@ -120,10 +120,27 @@
 .group-msg {
   background: rgba(140, 50, 195, 0.15);
   border-left: 3px solid #8c32c3;
-  padding: 0.5rem;
+  padding: 0.6rem 0.7rem;
   border-radius: 0.4rem;
   margin-bottom: 0.5rem;
   animation: bubble-in 0.25s ease;
+}
+
+.group-msg-order {
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.group-msg-line {
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.group-msg-total {
+  font-weight: bold;
+  color: #ffd700;
+  margin-top: 0.3rem;
 }
 
 .demo-restart {

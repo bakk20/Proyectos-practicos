@@ -11,7 +11,14 @@ const SCRIPT = [
   { type: 'chat', from: 'cliente', text: 'no nada más, ¿cuánto es y cómo pago?' },
   { type: 'chat', from: 'bot', text: 'Tu total es S/ 12.00. Puedes pagar por Yape a este número: 999-999-999. Envíame la captura cuando la tengas 🙌' },
   { type: 'chat', from: 'cliente', text: '📎 Captura de pago enviada' },
-  { type: 'group', text: '✅ Orden #1042 lista — Helado de Fresa (Grande) — S/ 12.00 — Pago Yape verificado (exacto)' },
+  {
+    type: 'group',
+    order: '#1042',
+    product: 'Helado de Fresa (Grande)',
+    phone: '+51 987 654 321',
+    address: 'Jr. Los Cerezos 123, Comas (referencial)',
+    total: 12.0,
+  },
   { type: 'chat', from: 'bot', text: '¡Comprobante verificado! ✅ Tu pedido está confirmado, en camino 🚴' },
 ]
 
@@ -26,7 +33,7 @@ export const RicksitoDemo = () => {
     const timer = setTimeout(() => {
       const item = SCRIPT[step]
       if (item.type === 'cart') setCart(item.items)
-      if (item.type === 'group') setGroupMsgs((prev) => [...prev, item.text])
+      if (item.type === 'group') setGroupMsgs((prev) => [...prev, item])
       setStep((s) => s + 1)
     }, step === 0 ? 400 : 1300)
     return () => clearTimeout(timer)
@@ -94,7 +101,15 @@ export const RicksitoDemo = () => {
               {groupMsgs.length === 0 ? (
                 <p className="demo-empty">Sin notificaciones aún…</p>
               ) : (
-                groupMsgs.map((m, i) => <div key={i} className="group-msg">{m}</div>)
+                groupMsgs.map((m, i) => (
+                  <div key={i} className="group-msg">
+                    <div className="group-msg-order">Orden {m.order}:</div>
+                    <div className="group-msg-line">{m.product}</div>
+                    <div className="group-msg-line">{m.phone}</div>
+                    <div className="group-msg-line">{m.address}</div>
+                    <div className="group-msg-total">S/ {m.total.toFixed(2)}</div>
+                  </div>
+                ))
               )}
             </div>
           </div>
