@@ -13,12 +13,14 @@ const SCRIPT = [
   { type: 'chat', from: 'cliente', text: '📎 Captura de pago enviada' },
   {
     type: 'group',
+    kind: 'order',
     order: '#1042',
     product: 'Helado de Fresa (Grande)',
     phone: '+51 987 654 321',
     address: 'Jr. Los Cerezos 123, Comas (referencial)',
     total: 12.0,
   },
+  { type: 'group', kind: 'reply', text: 'pedido #1042 listo' },
   { type: 'chat', from: 'bot', text: '¡Comprobante verificado! ✅ Tu pedido está confirmado, en camino 🚴' },
 ]
 
@@ -101,15 +103,19 @@ export const RicksitoDemo = () => {
               {groupMsgs.length === 0 ? (
                 <p className="demo-empty">Sin notificaciones aún…</p>
               ) : (
-                groupMsgs.map((m, i) => (
-                  <div key={i} className="group-msg">
-                    <div className="group-msg-order">Orden {m.order}:</div>
-                    <div className="group-msg-line">{m.product}</div>
-                    <div className="group-msg-line">{m.phone}</div>
-                    <div className="group-msg-line">{m.address}</div>
-                    <div className="group-msg-total">S/ {m.total.toFixed(2)}</div>
-                  </div>
-                ))
+                groupMsgs.map((m, i) =>
+                  m.kind === 'reply' ? (
+                    <div key={i} className="group-msg group-msg-employee">{m.text}</div>
+                  ) : (
+                    <div key={i} className="group-msg">
+                      <div className="group-msg-order">Orden {m.order}:</div>
+                      <div className="group-msg-line">{m.product}</div>
+                      <div className="group-msg-line">{m.phone}</div>
+                      <div className="group-msg-line">{m.address}</div>
+                      <div className="group-msg-total">S/ {m.total.toFixed(2)}</div>
+                    </div>
+                  )
+                )
               )}
             </div>
           </div>

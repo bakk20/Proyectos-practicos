@@ -143,6 +143,14 @@
   margin-top: 0.3rem;
 }
 
+.group-msg-employee {
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid #4caf6d;
+  font-weight: bold;
+  color: #dfffe8;
+  padding: 0.4rem 0.7rem;
+}
+
 .demo-restart {
   margin-top: 1rem;
   background: #8c32c3;
