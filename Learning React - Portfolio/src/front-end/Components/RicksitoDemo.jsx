@@ -11,8 +11,8 @@ const SCRIPT = [
   { type: 'chat', from: 'cliente', text: 'no nada más, ¿cuánto es y cómo pago?' },
   { type: 'chat', from: 'bot', text: 'Tu total es S/ 12.00. Puedes pagar por Yape a este número: 999-999-999. Envíame la captura cuando la tengas 🙌' },
   { type: 'chat', from: 'cliente', text: '📎 Captura de pago enviada' },
+  { type: 'group', text: '✅ Orden #1042 lista — Helado de Fresa (Grande) — S/ 12.00 — Pago Yape verificado (exacto)' },
   { type: 'chat', from: 'bot', text: '¡Comprobante verificado! ✅ Tu pedido está confirmado, en camino 🚴' },
-  { type: 'group', text: '🔔 Nuevo pedido confirmado — Helado de Fresa (Grande) — S/ 12.00 — Pago Yape verificado (exacto) ✅' },
 ]
 
 export const RicksitoDemo = () => {
@@ -51,7 +51,7 @@ export const RicksitoDemo = () => {
       <p className="ricksito-demo-note">
         Demo con conversación de ejemplo (guion fijo, no conectado al sistema en producción).
         Así funciona el flujo real: identificación del pedido, carrito, verificación de pago por
-        Yape, y aviso automático al dueño del negocio.
+        Yape, y aviso automático al grupo del negocio.
       </p>
 
       <div className="ricksito-demo-grid">
@@ -89,7 +89,7 @@ export const RicksitoDemo = () => {
           </div>
 
           <div className="demo-panel demo-group">
-            <div className="demo-panel-title">🔔 Aviso al dueño</div>
+            <div className="demo-panel-title">👥 Grupo Amoroma</div>
             <div className="demo-panel-body">
               {groupMsgs.length === 0 ? (
                 <p className="demo-empty">Sin notificaciones aún…</p>

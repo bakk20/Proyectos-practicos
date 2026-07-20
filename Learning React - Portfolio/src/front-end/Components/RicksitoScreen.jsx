@@ -38,7 +38,7 @@ export const RicksitoScreen = () => {
         <li>Memoria conversacional entre turnos, para resolver mensajes cortos y ambiguos: un
           nombre de calle, un "sí", elegir de una lista.</li>
         <li>Verificación de pagos: reconoce comprobantes Yape (exacto, de más, de menos) y
-          notifica automáticamente al dueño.</li>
+          notifica automáticamente al grupo.</li>
         <li>Geocoding con fallback: geocode.maps.co y Nominatim (OpenStreetMap), con limpieza
           de direcciones y reintentos.</li>
         <li>Clasificación de imágenes con visión: Gemini distingue comprobantes de pago de
