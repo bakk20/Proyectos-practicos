@@ -5,5 +5,6 @@ export { DevCodesSection } from '../Components/DevCodesSection';
 export { ProjectsScreen } from '../Components/ProjectsScreen';
 export { AboutScreen } from '../Components/AboutScreen';
 export { RicksitoScreen } from '../Components/RicksitoScreen';
+export { FarmaciaScreen } from '../Components/FarmaciaScreen';
 export { Layout } from '../Components/Layout';
 export { BackgroundVideo } from '../Components/BackgroundVideo';

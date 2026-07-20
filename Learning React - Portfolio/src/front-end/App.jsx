@@ -5,6 +5,7 @@ import {
   ProjectsScreen,
   AboutScreen,
   RicksitoScreen,
+  FarmaciaScreen,
   Layout,
   BackgroundVideo,
 } from "./routes/index";
@@ -30,6 +31,7 @@ export const App = () => {
           <Route path="/about" element={<AboutScreen />} />
           <Route path="/proyectos" element={<ProjectsScreen />} />
           <Route path="/ricksito" element={<RicksitoScreen />} />
+          <Route path="/farmacia" element={<FarmaciaScreen />} />
         </Route>
 
         {/* Login/registro: aislados, no requeridos para ver el portafolio */}

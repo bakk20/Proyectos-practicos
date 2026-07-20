@@ -1,0 +1,163 @@
+.farmacia-demo {
+  width: 100%;
+}
+
+.farmacia-demo-note {
+  font-size: 0.85rem;
+  color: #b8e0c0;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.farmacia-demo-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fdemo-panel {
+  background-color: rgba(30, 30, 30, 0.85);
+  border: 1px solid #1a7f37;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  min-width: 260px;
+  height: 340px;
+}
+
+.fdemo-panel-title {
+  padding: 0.6rem 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(26, 127, 55, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+}
+
+.fdemo-panel-body {
+  flex: 1;
+  padding: 0.9rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  color: #eee;
+}
+
+.fdemo-producto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fdemo-producto-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fdemo-producto-nombre {
+  font-weight: bold;
+}
+
+.fdemo-producto-precio {
+  color: #ffd700;
+  font-size: 0.8rem;
+}
+
+.fdemo-add-btn {
+  background: #1a7f37;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.fdemo-add-btn.pulse {
+  transform: scale(1.12);
+  background: #2ecc71;
+}
+
+.fdemo-empty {
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+
+.fdemo-cart-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fdemo-in 0.25s ease;
+}
+
+.fdemo-cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+  color: #ffd700;
+}
+
+.fdemo-checkout-form {
+  animation: fdemo-in 0.25s ease;
+}
+
+.fdemo-field {
+  padding: 0.3rem 0;
+  line-height: 1.4;
+}
+
+.fdemo-field span {
+  font-weight: bold;
+  color: #b8e0c0;
+  margin-right: 0.3rem;
+}
+
+.fdemo-confirmacion {
+  animation: fdemo-in 0.25s ease;
+}
+
+.fdemo-confirmacion-orden {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2ecc71;
+  margin: 0 0 0.4rem;
+}
+
+@keyframes fdemo-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fdemo-restart {
+  margin-top: 1rem;
+  background: #1a7f37;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.fdemo-restart:hover {
+  background: #145c29;
+}
+
+@media (max-width: 720px) {
+  .farmacia-demo-grid {
+    flex-direction: column;
+  }
+  .fdemo-panel {
+    height: 300px;
+  }
+}

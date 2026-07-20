@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GetGit } from './GetGit'
 import { RicksitoDemo } from './RicksitoDemo'
+import { FarmaciaDemo } from './FarmaciaDemo'
 import { Link } from 'react-router-dom'
 import '../styles/ProjectsScreen.css'
 
@@ -36,8 +37,12 @@ function ProjectDetail({ id }) {
           <p className="card-text">
             SPA con React + Vite, backend en Node.js + Express + MongoDB (Mongoose),
             autenticación JWT, manejo de estado con Redux Toolkit, subida de imágenes con
-            Multer, y un sistema de plantillas para armar secciones del catálogo sin tocar
-            código.
+            Multer, un sistema de plantillas para armar secciones del catálogo sin tocar
+            código, y carrito + checkout con pago simulado guardado en base de datos.
+          </p>
+          <FarmaciaDemo />
+          <p className="card-text" style={{ marginTop: '1rem' }}>
+            <Link to="/farmacia">Ver el caso de estudio completo →</Link>
           </p>
         </div>
       )
