@@ -32,7 +32,7 @@ const LANDINGS = [
   },
 ]
 
-function ProjectDetail({ id }) {
+function ProjectDetail({ id, activeLanding, setActiveLanding }) {
   switch (id) {
     case 'ricksito':
       return (
@@ -87,6 +87,39 @@ function ProjectDetail({ id }) {
         </div>
       )
     case 'landings':
+      if (activeLanding) {
+        return (
+          <div className="landing-preview">
+            <div className="landing-preview-header">
+              <button
+                type="button"
+                className="landing-back-btn"
+                onClick={() => setActiveLanding(null)}
+              >
+                ← Volver a la lista
+              </button>
+              <div className="landing-preview-title">
+                <span className="landing-item-name">{activeLanding.name}</span>
+                <span className="landing-item-desc">{activeLanding.desc}</span>
+              </div>
+              <a
+                href={activeLanding.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="landing-open-full-btn"
+              >
+                Ver landing completa ↗
+              </a>
+            </div>
+            <iframe
+              key={activeLanding.href}
+              src={activeLanding.href}
+              title={activeLanding.name}
+              className="landing-iframe"
+            />
+          </div>
+        )
+      }
       return (
         <div>
           <h3 className="card-title">Landing Pages</h3>
@@ -97,16 +130,15 @@ function ProjectDetail({ id }) {
           </p>
           <div className="landings-list">
             {LANDINGS.map((l) => (
-              <a
+              <button
                 key={l.href}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
                 className="landing-item"
+                onClick={() => setActiveLanding(l)}
               >
                 <span className="landing-item-name">{l.name}</span>
                 <span className="landing-item-desc">{l.desc}</span>
-              </a>
+              </button>
             ))}
           </div>
         </div>
@@ -126,6 +158,12 @@ function ProjectDetail({ id }) {
 
 export const ProjectsScreen = () => {
   const [selected, setSelected] = useState('ricksito')
+  const [activeLanding, setActiveLanding] = useState(null)
+
+  const handleSelectProject = (id) => {
+    setSelected(id)
+    setActiveLanding(null)
+  }
 
   return (
     <div className="projects-screen">
@@ -134,7 +172,7 @@ export const ProjectsScreen = () => {
           <button
             key={p.id}
             className={`project-item ${selected === p.id ? 'active' : ''}`}
-            onClick={() => setSelected(p.id)}
+            onClick={() => handleSelectProject(p.id)}
           >
             <span className="project-item-name">{p.name}</span>
             <span className="project-item-tag">{p.tag}</span>
@@ -143,7 +181,11 @@ export const ProjectsScreen = () => {
       </div>
 
       <div className="projects-detail component-card">
-        <ProjectDetail id={selected} />
+        <ProjectDetail
+          id={selected}
+          activeLanding={activeLanding}
+          setActiveLanding={setActiveLanding}
+        />
       </div>
     </div>
   )
