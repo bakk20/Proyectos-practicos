@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitalis Salud — Medicina general y especialidades</title>
+<style>
+  :root{
+    --verde:#1f8a5f;
+    --verde-dark:#145c3f;
+    --verde-suave:#eef8f3;
+    --blanco:#ffffff;
+    --texto:#1c2b24;
+    --gris:#66756f;
+    --acento:#e8a33d;
+    --borde:#e2ede8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    color:var(--texto);
+    background:var(--blanco);
+    line-height:1.6;
+  }
+  img{display:block;max-width:100%;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  section{padding:110px 0;}
+
+  /* ---- reveal ---- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* ---- header ---- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--borde);box-shadow:0 2px 16px rgba(20,92,63,.06);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;}
+  .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;color:var(--verde-dark);}
+  .logo svg{width:30px;height:30px;stroke:var(--verde);}
+  .nav-links{display:flex;gap:40px;}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--texto);opacity:.8;transition:opacity .2s ease, color .2s ease;}
+  .nav-links a:hover{opacity:1;color:var(--verde-dark);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 28px;border-radius:999px;
+    font-weight:600;font-size:15px;
+    cursor:pointer;border:none;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--verde);color:#fff;}
+  .btn-primary:hover{background:var(--verde-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(20,92,63,.25);}
+  .btn-outline{background:transparent;color:var(--verde-dark);border:1.5px solid var(--verde);}
+  .btn-outline:hover{background:var(--verde-suave);}
+
+  /* ---- hero ---- */
+  .hero{
+    padding:200px 0 120px;
+    background:linear-gradient(180deg, var(--verde-suave) 0%, #ffffff 100%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--borde);
+    padding:8px 16px;border-radius:999px;
+    font-size:13px;font-weight:600;color:var(--verde-dark);
+    margin-bottom:24px;
+  }
+  .hero-tag svg{width:16px;height:16px;stroke:var(--verde);}
+  h1{font-size:50px;line-height:1.14;font-weight:800;color:var(--texto);margin-bottom:22px;letter-spacing:-.5px;}
+  h1 span{color:var(--verde);}
+  .hero p.lead{font-size:18px;color:var(--gris);max-width:480px;margin-bottom:36px;}
+  .hero-actions{display:flex;gap:16px;margin-bottom:44px;}
+  .hero-trust{display:flex;gap:32px;flex-wrap:wrap;}
+  .hero-trust div{font-size:14px;color:var(--gris);}
+  .hero-trust strong{display:block;font-size:22px;color:var(--verde-dark);font-weight:800;}
+  .hero-visual{position:relative;}
+  .hero-visual img{border-radius:20px;width:100%;height:520px;object-fit:cover;filter: saturate(1.02) contrast(1.02);}
+  .hero-badge{
+    position:absolute;bottom:-24px;left:-24px;
+    background:#fff;border-radius:16px;padding:18px 22px;
+    box-shadow:0 18px 40px rgba(20,92,63,.16);
+    display:flex;align-items:center;gap:14px;
+  }
+  .hero-badge .icon-circle{
+    width:44px;height:44px;border-radius:50%;background:var(--verde-suave);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .hero-badge .icon-circle svg{width:22px;height:22px;stroke:var(--verde-dark);}
+  .hero-badge strong{display:block;font-size:15px;color:var(--texto);}
+  .hero-badge span{font-size:13px;color:var(--gris);}
+
+  /* ---- section heading ---- */
+  .section-head{max-width:620px;margin:0 auto 64px;text-align:center;}
+  .eyebrow{
+    display:inline-block;font-size:13px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--verde);margin-bottom:14px;
+  }
+  .section-head h2{font-size:36px;font-weight:800;letter-spacing:-.4px;margin-bottom:14px;}
+  .section-head p{color:var(--gris);font-size:16px;}
+
+  /* ---- especialidades ---- */
+  .esp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .esp-card{
+    background:#fff;border:1px solid var(--borde);border-radius:18px;
+    padding:36px 30px;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .esp-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(20,92,63,.1);border-color:transparent;}
+  .esp-icon{
+    width:52px;height:52px;border-radius:14px;background:var(--verde-suave);
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  }
+  .esp-icon svg{width:26px;height:26px;stroke:var(--verde-dark);}
+  .esp-card h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+  .esp-card p{color:var(--gris);font-size:14.5px;margin-bottom:18px;}
+  .esp-price{font-size:14px;font-weight:700;color:var(--verde-dark);}
+  .esp-price span{font-weight:400;color:var(--gris);}
+
+  /* ---- equipo ---- */
+  .equipo{background:var(--verde-suave);}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .team-card{background:#fff;border-radius:18px;overflow:hidden;text-align:center;padding-bottom:26px;transition:transform .2s ease, box-shadow .2s ease;}
+  .team-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(20,92,63,.12);}
+  .team-card img{width:100%;height:230px;object-fit:cover;}
+  .team-card h4{margin-top:20px;font-size:17px;font-weight:700;}
+  .team-card span{font-size:13.5px;color:var(--verde);font-weight:600;}
+
+  /* ---- testimonios ---- */
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .test-card{
+    background:#fff;border:1px solid var(--borde);border-radius:18px;padding:32px;
+  }
+  .stars{display:flex;gap:3px;margin-bottom:18px;}
+  .stars svg{width:16px;height:16px;fill:var(--acento);stroke:none;}
+  .test-card p.quote{font-size:15px;color:var(--texto);margin-bottom:24px;font-style:italic;}
+  .test-person{display:flex;align-items:center;gap:12px;}
+  .test-person img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+  .test-person strong{display:block;font-size:14.5px;}
+  .test-person span{font-size:13px;color:var(--gris);}
+
+  /* ---- ubicacion ---- */
+  .ubicacion{background:var(--verde-dark);color:#fff;}
+  .ubi-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .ubicacion .eyebrow{color:#9fd9bd;}
+  .ubicacion h2{color:#fff;}
+  .ubicacion p.lead{color:rgba(255,255,255,.75);font-size:16px;margin-bottom:32px;max-width:440px;}
+  .ubi-info{display:flex;gap:16px;margin-bottom:22px;}
+  .ubi-info .icon-circle{
+    width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .ubi-info .icon-circle svg{width:20px;height:20px;stroke:#9fd9bd;}
+  .ubi-info strong{display:block;font-size:15px;margin-bottom:2px;}
+  .ubi-info span{font-size:14px;color:rgba(255,255,255,.65);}
+  .map-placeholder{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:20px;height:380px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .map-grid-lines{position:absolute;inset:0;background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:32px 32px;}
+  .map-pin{position:relative;width:52px;height:52px;background:var(--acento);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.3);}
+  .map-pin svg{width:24px;height:24px;stroke:#fff;transform:rotate(45deg);}
+
+  /* ---- footer ---- */
+  footer{background:#0f2e21;color:rgba(255,255,255,.7);padding:64px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .foot-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;}
+  .foot-logo svg{width:26px;height:26px;stroke:#9fd9bd;}
+  footer h5{color:#fff;font-size:14px;font-weight:700;margin-bottom:16px;letter-spacing:.03em;text-transform:uppercase;}
+  footer ul li{margin-bottom:10px;font-size:14.5px;}
+  footer ul li a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+
+  @media (max-width:960px){
+    .hero-grid, .ubi-grid{grid-template-columns:1fr;}
+    .esp-grid{grid-template-columns:repeat(2,1fr);}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .test-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    h1{font-size:36px;}
+    .hero-visual{margin-top:20px;}
+  }
+
+  @media (max-width:640px){
+    .container{padding:0 20px;}
+    section{padding:64px 0;}
+    .hero{padding:140px 0 80px;}
+    h1{font-size:28px;}
+    .hero p.lead{font-size:15.5px;}
+    .hero-actions{flex-direction:column;align-items:stretch;gap:12px;}
+    .hero-actions .btn{text-align:center;justify-content:center;}
+    .hero-trust{gap:20px;}
+    .hero-visual img{height:280px;}
+    .hero-badge{position:static;margin-top:16px;width:100%;}
+    .section-head h2{font-size:26px;}
+    .section-head p{font-size:14.5px;}
+    .esp-grid{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:1fr;}
+    .team-card img{height:260px;}
+    .foot-grid{grid-template-columns:1fr;gap:32px;}
+    .foot-bottom{flex-direction:column;}
+    .ubi-grid{gap:36px;}
+    .map-placeholder{height:240px;}
+    .nav .btn-primary{padding:10px 18px;font-size:14px;}
+    .logo{font-size:19px;}
+    .logo svg{width:26px;height:26px;}
+  }
+
+  @media (max-width:420px){
+    .container{padding:0 16px;}
+    .nav{height:70px;}
+    .logo{font-size:16px;gap:7px;}
+    .logo svg{width:22px;height:22px;}
+    .nav .btn-primary{padding:9px 14px;font-size:13px;}
+    .hero{padding:120px 0 60px;}
+    .hero-tag{font-size:12px;padding:7px 12px;}
+    h1{font-size:24px;}
+    .hero p.lead{font-size:14.5px;}
+    .hero-trust{flex-direction:column;gap:12px;}
+    .hero-visual img{height:220px;}
+    .section-head h2{font-size:22px;}
+    .esp-card{padding:26px 22px;}
+    .esp-icon{width:44px;height:44px;}
+    .team-card img{height:220px;}
+    .test-card{padding:24px 20px;}
+    .ubi-info strong{font-size:14px;}
+    .map-placeholder{height:200px;}
+    .foot-logo{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container nav">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      Vitalis Salud
+    </div>
+    <nav class="nav-links">
+      <a href="#especialidades">Especialidades</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <a href="#ubicacion" class="btn btn-primary">Agenda tu cita</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Atención el mismo día
+      </div>
+      <h1>Tu salud, en manos de <span>confianza</span>.</h1>
+      <p class="lead">Medicina general y especialidades bajo un mismo techo, con un equipo médico cercano y horarios pensados para tu día a día.</p>
+      <div class="hero-actions">
+        <a href="#ubicacion" class="btn btn-primary">Agenda tu cita</a>
+        <a href="#especialidades" class="btn btn-outline">Ver especialidades</a>
+      </div>
+      <div class="hero-trust">
+        <div><strong>+10</strong>especialidades</div>
+        <div><strong>12</strong>médicos colegiados</div>
+        <div><strong>+5,000</strong>pacientes atendidos</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="img_clinica/cl_hero.jpg" alt="Consulta médica">
+      <div class="hero-badge">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div>
+          <strong>Citas confirmadas</strong>
+          <span>en menos de 24 horas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="especialidades">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Especialidades</span>
+      <h2>Atención completa, sin derivarte a otro lugar</h2>
+      <p>Consultas presenciales con médicos colegiados, en horarios de mañana, tarde y noche.</p>
+    </div>
+    <div class="esp-grid">
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <h3>Medicina general</h3>
+        <p>Diagnóstico, chequeos preventivos y seguimiento continuo para toda la familia.</p>
+        <div class="esp-price">Desde S/ 60 <span>/ consulta</span></div>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21v-4a2 2 0 012-2h2a2 2 0 012 2v4"/><path d="M3 10l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h3M19 10v9a1 1 0 01-1 1h-3"/></svg></div>
+        <h3>Pediatría</h3>
+        <p>Control de crecimiento, vacunas y atención especializada para niños y adolescentes.</p>
+        <div class="esp-price">Desde S/ 80 <span>/ consulta</span></div>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+        <h3>Cardiología</h3>
+        <p>Evaluación cardiovascular, electrocardiogramas e interconsultas de riesgo.</p>
+        <div class="esp-price">Desde S/ 120 <span>/ consulta</span></div>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 000 18 5 5 0 010-10 3 3 0 000-6"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="8" r="1"/><circle cx="15" cy="13" r="1"/></svg></div>
+        <h3>Dermatología</h3>
+        <p>Diagnóstico de piel, tratamiento de manchas, acné y revisión de lunares.</p>
+        <div class="esp-price">Desde S/ 100 <span>/ consulta</span></div>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-8-6.5-8-11a5 5 0 019-3 5 5 0 019 3c0 4.5-4 8-8 11l-1 .8-1-.8z"/></svg></div>
+        <h3>Ginecología</h3>
+        <p>Control ginecológico integral, planificación familiar y ecografías.</p>
+        <div class="esp-price">Desde S/ 110 <span>/ consulta</span></div>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4l2-8 4 16 2-8h4"/></svg></div>
+        <h3>Nutrición</h3>
+        <p>Planes alimenticios personalizados y seguimiento de peso y hábitos.</p>
+        <div class="esp-price">Desde S/ 70 <span>/ consulta</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="equipo" id="equipo">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Médicos colegiados que te escuchan</h2>
+      <p>Un equipo cercano, con años de experiencia clínica y trato humano.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img src="img_clinica/cl_team1.jpg" alt="Dra. Renata Salazar">
+        <h4>Dra. Renata Salazar</h4>
+        <span>Medicina general</span>
+      </div>
+      <div class="team-card reveal">
+        <img src="img_clinica/cl_team2.jpg" alt="Dr. Ignacio Prado">
+        <h4>Dr. Ignacio Prado</h4>
+        <span>Cardiología</span>
+      </div>
+      <div class="team-card reveal">
+        <img src="img_clinica/cl_team3.jpg" alt="Dra. Milagros Chávez">
+        <h4>Dra. Milagros Chávez</h4>
+        <span>Pediatría</span>
+      </div>
+      <div class="team-card reveal">
+        <img src="img_clinica/cl_team4.jpg" alt="Dr. Sebastián Rojas">
+        <h4>Dr. Sebastián Rojas</h4>
+        <span>Dermatología</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen nuestros pacientes</h2>
+      <p>Experiencias reales de personas que confiaron en nosotros.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+        </div>
+        <p class="quote">"Me atendieron el mismo día que llamé. La doctora se tomó su tiempo para explicarme todo con calma."</p>
+        <div class="test-person">
+          <img src="img_clinica/cl_test1.jpg" alt="Paciente">
+          <div><strong>Carla Medina</strong><span>Paciente de medicina general</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+        </div>
+        <p class="quote">"Llevo a mi hijo con la Dra. Chávez desde que nació. Siempre nos explican todo sin apuro."</p>
+        <div class="test-person">
+          <img src="img_clinica/cl_test2.jpg" alt="Paciente">
+          <div><strong>Jorge Huamán</strong><span>Padre de paciente pediátrico</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3 1.2-6.8-5-4.9 6.9-1z"/></svg>
+        </div>
+        <p class="quote">"Pedí cita de cardiología y en dos días ya tenía mis resultados y una explicación clara del tratamiento."</p>
+        <div class="test-person">
+          <img src="img_clinica/cl_test3.jpg" alt="Paciente">
+          <div><strong>Rosa Delgado</strong><span>Paciente de cardiología</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ubicacion" id="ubicacion">
+  <div class="container ubi-grid">
+    <div>
+      <span class="eyebrow reveal">Ubicación</span>
+      <h2 class="reveal">Visítanos o agenda tu cita</h2>
+      <p class="lead reveal">Contamos con estacionamiento propio y acceso para personas con movilidad reducida.</p>
+      <div class="ubi-info reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><strong>Av. Sáenz Peña 385, Bellavista</strong><span>Callao, Perú</span></div>
+      </div>
+      <div class="ubi-info reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><strong>Lun. a sáb. 8:00 am – 8:00 pm</strong><span>Domingos 9:00 am – 1:00 pm</span></div>
+      </div>
+      <div class="ubi-info reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.34 1.79.65 2.65a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.43-1.22a2 2 0 012.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0122 16.92z"/></svg></div>
+        <div><strong>+51 922 149 458</strong><span>Llamadas y WhatsApp</span></div>
+      </div>
+    </div>
+    <div class="map-placeholder reveal">
+      <div class="map-grid-lines"></div>
+      <div class="map-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          Vitalis Salud
+        </div>
+        <p style="font-size:14.5px;max-width:280px;">Medicina general y especialidades con atención cercana, en Bellavista, Callao.</p>
+      </div>
+      <div>
+        <h5>Especialidades</h5>
+        <ul>
+          <li><a href="#especialidades">Medicina general</a></li>
+          <li><a href="#especialidades">Pediatría</a></li>
+          <li><a href="#especialidades">Cardiología</a></li>
+          <li><a href="#especialidades">Dermatología</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Enlaces</h5>
+        <ul>
+          <li><a href="#equipo">Nuestro equipo</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li>+51 922 149 458</li>
+          <li>contacto@vitalissalud.pe</li>
+          <li>Av. Sáenz Peña 385, Bellavista</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Vitalis Salud. Todos los derechos reservados.</span>
+      <span>Diseño de landing page — proyecto de portafolio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

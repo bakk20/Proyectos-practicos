@@ -10,7 +10,26 @@ const PROJECTS = [
   { id: 'farmacia', name: 'Catálogo de Farmacia', tag: 'Full-stack' },
   { id: 'plataforma', name: 'Plataforma de Usuarios', tag: 'Full-stack' },
   { id: 'dashboard', name: 'Dashboard de Tareas', tag: 'Frontend' },
+  { id: 'landings', name: 'Landing Pages', tag: 'Diseño web' },
   { id: 'github', name: 'Código en GitHub', tag: 'Repositorio' },
+]
+
+const LANDINGS = [
+  {
+    href: '/landings/restaurante_landing.html',
+    name: 'El Fogón de Lima',
+    desc: 'Restaurante — menú, galería y reservas',
+  },
+  {
+    href: '/landings/vuelos_landing.html',
+    name: 'Vuela Andina',
+    desc: 'Agencia de viajes — planes, destinos y equipo',
+  },
+  {
+    href: '/landings/clinica_landing.html',
+    name: 'Vitalis Salud',
+    desc: 'Clínica médica — especialidades, equipo y testimonios',
+  },
 ]
 
 function ProjectDetail({ id }) {
@@ -65,6 +84,31 @@ function ProjectDetail({ id }) {
             Tablero con drag & drop (dnd-kit + react-grid-layout), Next.js con backend en
             TypeScript, estilos con Tailwind CSS y manejo de estado con Redux Toolkit.
           </p>
+        </div>
+      )
+    case 'landings':
+      return (
+        <div>
+          <h3 className="card-title">Landing Pages</h3>
+          <p className="card-text">
+            Tres landing pages de práctica, hechas desde cero como piezas de diseño y
+            desarrollo front-end independientes entre sí (sin plantillas ni builders),
+            cada una con su propia paleta, estructura y animaciones.
+          </p>
+          <div className="landings-list">
+            {LANDINGS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="landing-item"
+              >
+                <span className="landing-item-name">{l.name}</span>
+                <span className="landing-item-desc">{l.desc}</span>
+              </a>
+            ))}
+          </div>
         </div>
       )
     case 'github':
