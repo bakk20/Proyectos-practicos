@@ -18,16 +18,14 @@
   var BOT_ID = currentScript.getAttribute('data-bot-id');
   var ACCENT = currentScript.getAttribute('data-accent-color') || '#8c32c3';
   var ACCENT_DARK = currentScript.getAttribute('data-accent-dark') || ACCENT;
-  var WEBHOOK_BASE =
+  var WEBHOOK_URL =
     currentScript.getAttribute('data-webhook-base') ||
-    'https://amoroma-n8n.w4b9dp.easypanel.host/webhook/chat-engine/';
+    'https://amoroma-n8n.w4b9dp.easypanel.host/webhook/474df04c-3fd7-4063-8e1c-ea5845647302/chat-engine';
 
   if (!BOT_ID) {
     console.error('[motor-chat] Falta data-bot-id en el <script>.');
     return;
   }
-
-  var WEBHOOK_URL = WEBHOOK_BASE.replace(/\/$/, '') + '/' + BOT_ID;
 
   // ---------------------------------------------------------------------
   // Estado
@@ -268,6 +266,7 @@
     var typingEl = addTyping();
 
     var body = {
+      bot_id: BOT_ID,
       nodo_actual: state.currentNodeId,
       opcion_elegida: (payload && payload.opcion_elegida) || null,
       datos_formulario: (payload && payload.datos_formulario) || null
