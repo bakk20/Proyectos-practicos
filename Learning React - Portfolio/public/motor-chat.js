@@ -20,7 +20,7 @@
   var ACCENT_DARK = currentScript.getAttribute('data-accent-dark') || ACCENT;
   var WEBHOOK_URL =
     currentScript.getAttribute('data-webhook-base') ||
-    'https://amoroma-n8n.w4b9dp.easypanel.host/webhook/474df04c-3fd7-4063-8e1c-ea5845647302/chat-engine';
+    'https://amoroma-n8n.w4b9dp.easypanel.host/webhook/chat-engine';
 
   if (!BOT_ID) {
     console.error('[motor-chat] Falta data-bot-id en el <script>.');
